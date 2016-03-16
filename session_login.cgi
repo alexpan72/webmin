@@ -2,10 +2,15 @@
 # session_login.cgi
 # Display the login form used in session login mode
 
+# the following row appends in INC array the '..' path as a place where looking for WebminCore library or other libraries 
+# used in this file
 BEGIN { push(@INC, ".."); };
 use WebminCore;
 
-$pragma_no_cache = 1;
+$pragma_no_cache = 1; # this variable must be processed somewhere to set pragma header variable (HTTP 1.0 version) or
+                      # cache_control variable (HTTP 1.1) to no-cache value. It's to be checked the actual use 
+                      # (response header I suppose, but pragma is not dedfined as a response header ...)
+                      
 #$ENV{'MINISERV_INTERNAL'} || die "Can only be called by miniserv.pl";
 &init_config();
 &ReadParse();
